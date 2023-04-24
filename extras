@@ -1,0 +1,7 @@
+-- 1. Find the names of all reviewers who rated Gone with the Wind. 
+
+select distinct name
+from Movie
+inner join Rating using(mId)
+inner join Reviewer using(rId)
+where title = "Gone with the Wind";
