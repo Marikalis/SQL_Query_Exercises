@@ -14,3 +14,12 @@ inner join Rating using(mId)
 inner join Reviewer using(rId)
 where director = name;
 
+-- 3. Return all reviewer names and movie names together in a single list, alphabetized. (Sorting by the first name of the reviewer and first word in the title is fine; no need for special processing on last names or removing "The")
+
+select title
+from Movie
+union
+select name
+from Reviewer
+order by name, title;
+
