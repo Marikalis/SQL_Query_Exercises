@@ -5,3 +5,12 @@ from Movie
 inner join Rating using(mId)
 inner join Reviewer using(rId)
 where title = "Gone with the Wind";
+
+-- 2. For any rating where the reviewer is the same as the director of the movie, return the reviewer name, movie title, and number of stars. 
+
+select name, title, stars
+from Movie
+inner join Rating using(mId)
+inner join Reviewer using(rId)
+where director = name;
+
