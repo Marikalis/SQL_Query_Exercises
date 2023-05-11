@@ -44,4 +44,22 @@ and R2.rID = Re2.rID
 and Re1.name < Re2.name
 order by Re1.name, Re2.name;
 
+-- 6. For each rating that is the lowest (fewest stars) currently in the database, return the reviewer name, movie title, and number of stars.
+
+select name, title, stars
+from Movie
+inner join Rating using(mId)
+inner join Reviewer using(rId)
+where stars = (select MIN(stars) from Rating);
+
+-- 7. List movie titles and average ratings, from highest-rated to lowest-rated. If two or more movies have the same average rating, list them in alphabetical order.
+
+select title, AVG(stars) as average
+from Movie
+inner join Rating using(mId)
+group by mId
+order by average desc, title;
+
+
+
 
