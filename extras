@@ -23,3 +23,25 @@ select name
 from Reviewer
 order by name, title;
 
+-- 4. Find the titles of all movies not reviewed by Chris Jackson. 
+
+select title
+from Movie
+where mId not in (
+  select mId
+  from Rating
+  inner join Reviewer using(rId)
+  where name = "Chris Jackson"
+);
+
+-- 5. For all pairs of reviewers such that both reviewers gave a rating to the same movie, return the names of both reviewers. 
+
+select distinct Re1.name, Re2.name
+from Rating R1, Rating R2, Reviewer Re1, Reviewer Re2
+where R1.mID = R2.mID
+and R1.rID = Re1.rID
+and R2.rID = Re2.rID
+and Re1.name < Re2.name
+order by Re1.name, Re2.name;
+
+
