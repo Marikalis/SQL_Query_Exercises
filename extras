@@ -60,6 +60,18 @@ inner join Rating using(mId)
 group by mId
 order by average desc, title;
 
+-- 8. Find the names of all reviewers who have contributed three or more ratings.
 
+select name
+from Reviewer
+where (select count(*) from Rating where Rating.rId = Reviewer.rId) >= 3;
+
+
+-- 9. Some directors directed more than one movie. For all such directors, return the titles of all movies directed by them, along with the director name. Sort by director name, then movie title.
+
+select title, director
+from Movie M1
+where (select count(*) from Movie M2 where M1.director = M2.director) > 1
+order by director, title;
 
 
